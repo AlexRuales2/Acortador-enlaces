@@ -8,5 +8,25 @@
       "$date": "2023-10-12T14:23:45Z"
     },
     "ip_address": "192.168.1.15"
+  },
+  {
+    "_id": {
+      "$oid": "64bcdef1234567890abcdef2"
+    },
+    "short_code": "imgweb1",
+    "click_timestamp": {
+      "$date": "2023-10-12T15:00:00Z"
+    },
+    "ip_address": "192.168.1.15"
+  },
+  {
+    "_id": {
+      "$oid": "64bcdef1234567890abcdef3"
+    },
+    "short_code": "heart26",
+    "click_timestamp": {
+      "$date": "2023-10-12T16:00:00Z"
+    },
+    "ip_address": "192.168.1.15"
   }
 ]
