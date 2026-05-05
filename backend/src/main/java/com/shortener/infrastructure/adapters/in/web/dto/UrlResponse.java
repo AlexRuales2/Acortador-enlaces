@@ -13,7 +13,6 @@ public class UrlResponse {
     private String originalUrl;
     private String imageUrl;
     private String description;
-    private Long visits;
 
     public static UrlResponse fromDomain(Url url) {
         return UrlResponse.builder()
@@ -21,7 +20,6 @@ public class UrlResponse {
                 .originalUrl(url.getOriginalUrl())
                 .imageUrl(url.getImageUrl())
                 .description(url.getDescription())
-                .visits(url.getVisits())
                 .build();
     }
 }

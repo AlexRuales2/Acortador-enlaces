@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Data
 @Builder
 @NoArgsConstructor
@@ -17,6 +15,4 @@ public class Url {
     private String shortCode;
     private String imageUrl;
     private String description;
-    private LocalDateTime creationDate;
-    private Long visits;
 }

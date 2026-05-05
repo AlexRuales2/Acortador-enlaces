@@ -1,5 +1,7 @@
 package com.shortener.domain.ports.in;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface RedirectUrlUseCase {
-    String getOriginalUrlAndRecordVisit(String shortCode, String ipAddress);
+    CompletableFuture<String> getOriginalUrl(String shortCode);
 }

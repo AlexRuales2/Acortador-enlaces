@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "urls")
 @Data
@@ -24,14 +22,4 @@ public class UrlEntity {
 
     @Column(nullable = false, unique = true, length = 15)
     private String shortCode;
-
-    @Column(nullable = false, length = 2048)
-    private String imageUrl;
-
-    @Column(nullable = false, length = 500)
-    private String description;
-
-    private LocalDateTime creationDate;
-
-    private Long visits;
 }

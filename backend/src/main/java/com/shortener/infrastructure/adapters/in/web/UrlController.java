@@ -5,7 +5,6 @@ import com.shortener.domain.ports.in.RedirectUrlUseCase;
 import com.shortener.domain.ports.in.ShortenUrlUseCase;
 import com.shortener.infrastructure.adapters.in.web.dto.UrlRequest;
 import com.shortener.infrastructure.adapters.in.web.dto.UrlResponse;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,13 +41,11 @@ public class UrlController {
 
     // 2. Redireccionar URL acortada
     @GetMapping("/{shortCode}")
-    public ResponseEntity<Void> redirect(@PathVariable String shortCode, HttpServletRequest request) {
-        String ipAddress = request.getRemoteAddr();
-        String originalUrl = redirectUrlUseCase.getOriginalUrlAndRecordVisit(shortCode, ipAddress);
-
-        return ResponseEntity.status(HttpStatus.FOUND)
-                .location(java.util.Objects.requireNonNull(URI.create(originalUrl)))
-                .build();
+    public CompletableFuture<ResponseEntity<Void>> redirect(@PathVariable String shortCode) {
+        return redirectUrlUseCase.getOriginalUrl(shortCode)
+                .thenApply(originalUrl -> ResponseEntity.status(HttpStatus.FOUND)
+                        .location(java.util.Objects.requireNonNull(URI.create(originalUrl)))
+                        .build());
     }
 
     // 3. Obtener todas (para la vista de tabla)
