@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ApiUrlRepository } from '../../infrastructure/api/UrlRepository';
 import { UrlData } from '../../domain/models';
 
@@ -37,20 +37,19 @@ export default function SecondaryView() {
                             <th>Enlace Corto</th>
                             <th>Enlace Original</th>
                             <th>Descripción</th>
-                            <th>Visitas</th>
                         </tr>
                     </thead>
                     <tbody>
                         {urls.length === 0 ? (
                             <tr>
-                                <td colSpan={5} style={{ textAlign: 'center' }}>No hay enlaces acortados aún.</td>
+                                <td colSpan={4} style={{ textAlign: 'center' }}>No hay enlaces acortados aún.</td>
                             </tr>
                         ) : (
                             urls.map((url) => (
                                 <tr key={url.shortCode}>
                                     <td>
-                                        <img src={url.imageUrl} alt="preview" className="table-img" 
-                                             onError={(e) => (e.currentTarget.src = 'https://via.placeholder.com/50')} />
+                                        <img src={url.imageUrl || 'https://via.placeholder.com/50'} alt="preview" className="table-img" 
+                                             onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = 'https://via.placeholder.com/50'; }} />
                                     </td>
                                     <td>
                                         <a href={`http://localhost:8081/${url.shortCode}`} target="_blank" rel="noopener noreferrer" className="short-link">
@@ -64,10 +63,9 @@ export default function SecondaryView() {
                                     </td>
                                     <td>
                                         <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                                            {url.description.length > 50 ? url.description.substring(0, 50) + '...' : url.description}
+                                            {url.description ? (url.description.length > 50 ? url.description.substring(0, 50) + '...' : url.description) : 'Sin descripción'}
                                         </span>
                                     </td>
-                                    <td style={{ fontWeight: 'bold' }}>{url.visits}</td>
                                 </tr>
                             ))
                         )}

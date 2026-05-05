@@ -3,7 +3,6 @@ export interface UrlData {
     originalUrl: string;
     imageUrl: string;
     description: string;
-    visits: number;
 }
 
 export interface UrlRequest {
